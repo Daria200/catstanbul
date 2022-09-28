@@ -1,16 +1,6 @@
-/* #header {
-  background: #ff9900;
-} */
-
 #branding h1 {
-  /* color: white; */
   font-size: 35px;
 }
-
-/* div.breadcrumbs {
-  background: #ffc166;
-  color: white;
-} */
 
 :root {
   --primary: #ffc166;
