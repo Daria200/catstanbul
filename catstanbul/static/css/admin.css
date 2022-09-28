@@ -1,0 +1,33 @@
+/* #header {
+  background: #ff9900;
+} */
+
+#branding h1 {
+  /* color: white; */
+  font-size: 35px;
+}
+
+/* div.breadcrumbs {
+  background: #ffc166;
+  color: white;
+} */
+
+:root {
+  --primary: #ffc166;
+  --secondary: #ff9900;
+  --accent: white;
+  --breadcrumbs-link-fg: white;
+  --breadcrumbs-fg: #0066ff;
+  --body-bg: #fff4e5;
+  --hairline-color: #663d00;
+  --darkened-bg: #ffeacc;
+  --close-button-bg: #0066ff;
+  --body-quiet-color: #4c2d00;
+  --body-fg: #4c2d00;
+  --link-fg: #663d00;
+  --primary-fg: white;
+  --selected-row: #99c1ff;
+  --selected-bg: #66a3ff;
+  --button-hover-bg: #ffa319;
+  --default-button-hover-bg: #cc7a00;
+}
