@@ -36,7 +36,7 @@
       {% if cats %} {% for cat in cats %}
       <div class="col-md-6 col-lg-4 mb-4">
         <div class="card listing-preview">
-          <img class="card-img-top" src="{{ cat.photo_main }}" alt="" />
+          <img class="card-img-top" src="{{ cat.photo_main.url }}" alt="" />
           <div class="card-img-overlay">
             <h2>
               <span class="badge badge-secondary text-white"
