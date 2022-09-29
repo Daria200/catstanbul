@@ -1,4 +1,6 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} 
+{% block content %}
+{% load humanize %}
 <section id="showcase-inner" class="py-5 text-white">
   <div class="container">
     <div class="row text-center">
@@ -27,58 +29,68 @@
   </div>
 </section>
 
-<!-- Listings -->
+<!-- Cats -->
 <section id="listings" class="py-4">
   <div class="container">
     <div class="row">
-      <!-- Listing 1 -->
+      {% if cats %} {% for cat in cats %}
       <div class="col-md-6 col-lg-4 mb-4">
         <div class="card listing-preview">
-          <img class="card-img-top" src="assets/img/homes/home-1.jpg" alt="" />
+          <img class="card-img-top" src="{{ cat.photo_main }}" alt="" />
           <div class="card-img-overlay">
             <h2>
-              <span class="badge badge-secondary text-white">$10</span>
+              <span class="badge badge-secondary text-white"
+                >${{ cat.donation }}</span
+              >
             </h2>
           </div>
           <div class="card-body">
             <div class="listing-heading text-center">
-              <h4 class="text-primary">Chocolate</h4>
+              <h4 class="text-primary">{{ cat.name }}</h4>
               <p>
-                <i class="fas fa-map-marker text-secondary"></i> Istanbul,
-                Karaköy
+                <i class="fas fa-map-marker text-secondary"></i> {{ cat.city }},
+                {{ cat.address }}
               </p>
             </div>
             <hr />
             <div class="row py-2 text-secondary">
               <div class="col-6">
-                <i class="fas fa-th-large"></i> Age: 1 year
+                <i class="fas fa-th-large"></i> Age: {{ cat.age }} 
+                {% if cat.age < 2 %} year {% else %} years {% endif %}
               </div>
-              <div class="col-6"><i class="fas fa-car"></i> Siblings: 3</div>
+              <div class="col-6">
+                <i class="fas fa-th-large"></i> Gender: {{ cat.gender }}
+              </div>
+              
             </div>
             <div class="row py-2 text-secondary">
               <div class="col-6">
-                <i class="fas fa-bed"></i> Vaccinated: yes
+                <i class="fas fa-bed"></i> Vaccinated: {% if cat.vaccinated == True %} Yes {% else %} No {% endif %}
               </div>
               <div class="col-6">
-                <i class="fas fa-bath"></i> Available: from 01.11.2022
+                <i class="fas fa-bath"></i> Available: from {{ cat.available_from|date:'j.n.Y' }} 
               </div>
             </div>
             <hr />
             <div class="row py-2 text-secondary">
               <div class="col-12">
-                <i class="fas fa-user"></i> Joanna Parrish
+                <i class="fas fa-user"></i>{{ cat.volunteer }}
               </div>
             </div>
             <div class="row text-secondary pb-2">
-              <div class="col-6"><i class="fas fa-clock"></i> 2 days ago</div>
+              <div class="col-6"><i class="fas fa-clock">{{ cat.list_date|timesince }} ago</i></div>
             </div>
             <hr />
-            <a href="listing.html" class="btn btn-primary btn-block"
+            <a href="{% url 'cat' cat.id %}" class="btn btn-primary btn-block"
               >More Info</a
             >
           </div>
         </div>
       </div>
+      {% endfor %} {% else %}
+      <div class="col-md-12"><p>{No Cats Available}</p></div>
+      {% endif %}
+      <!-- Listing 1 -->
     </div>
 
     <div class="row">
