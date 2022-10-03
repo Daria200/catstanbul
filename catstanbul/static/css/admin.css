@@ -21,3 +21,8 @@
   --button-hover-bg: #ffa319;
   --default-button-hover-bg: #cc7a00;
 }
+
+.success{
+  --body-fg: white;
+  --link-fg: #92ffae;
+}
