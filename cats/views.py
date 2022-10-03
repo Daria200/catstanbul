@@ -1,5 +1,5 @@
 from multiprocessing import context
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 from .models import Cat
@@ -16,7 +16,9 @@ def cats(request):
 
 
 def cat(request, cat_id):
-    return render(request, "cats/cat.html")
+    cat = get_object_or_404(Cat, pk=cat_id)
+    context = {'cat':cat}
+    return render(request, "cats/cat.html", context)
 
 
 def search(request):
