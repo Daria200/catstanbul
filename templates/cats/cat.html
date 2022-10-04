@@ -1,15 +1,10 @@
 {% extends 'base.html' %} 
 {% block content %}
 {% load humanize %}
-<section id="showcase-inner" class="py-5 text-white">
-    <div class="container">
-      <div class="row text-center">
-        <div class="col-md-12">
-          <h1 class="display-4">{{ cat.name }}</h1>
-          <p class="lead">
-            <i class="fa fa-globe"></i>  {{ cat.address }}, {{ cat.city }}</p>
-        </div>
-      </div>
+<section id="showcase-inner" class="py-5 text-white section_center">
+    <div class="container cont_center text-center">
+        <h1>{{ cat.name }}</h1>
+        <p><i class="fa fa-globe"></i>  {{ cat.address }}, {{ cat.city }}</p>
     </div>
   </section>
 

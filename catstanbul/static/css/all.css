@@ -7,6 +7,14 @@
   background-color: #FFE4BD;
 }
 
+.section_center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cont_center{
+margin: 0 auto;
+}
 .fa,
 .fas,
 .far,
