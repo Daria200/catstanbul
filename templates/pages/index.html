@@ -7,7 +7,7 @@
         <h1 class="display-4 mb-4">Give a home to a cat</h1>
         <p class="lead">Search a cat according to your desire</p>
         <div class="search">
-          <form action="search.html">
+          <form action="{% url 'search' %}">
             <!-- Form Row 1 -->
             <div class="form-row">
               <div class="col-md-4 mb-3">
@@ -94,15 +94,14 @@
             <div class="listing-heading text-center">
               <h4 class="text-primary">{{ cat.name }}</h4>
               <p>
-                <i class="fa fa-map-marker"></i> {{ cat.city }}, {{ cat.address
-                }}
+                <i class="fa fa-map-marker"></i> {{ cat.city }}, {{ cat.address}}
               </p>
             </div>
             <hr />
             <div class="row py-2 text-secondary">
               <div class="col-6">
                 <i class="fa fa-address-card-o"></i> Age: {{ cat.age }} 
-                {% if cat.age < 2 %} year {% else %} years {% endif %}
+                {% if cat.age == 1 %} year {% else %} years {% endif %}
               </div>
               <div class="col-6">
                 <i class="fa fa-paw"></i> Gender: {{ cat.gender }}
@@ -114,8 +113,7 @@
                 {% if cat.vaccinated == True %} Yes {% else %} No {% endif %}
               </div>
               <div class="col-6">
-                <i class="fa fa-calendar"></i> Available: from {{
-                cat.available_from|date:'j.n.Y' }}
+                <i class="fa fa-calendar"></i> Available: from {{ cat.available_from|date:'j.n.Y' }}
               </div>
             </div>
             <hr />
@@ -125,7 +123,7 @@
               </div>
             </div>
             <div class="row text-secondary pb-2">
-              <div class="col-6">
+              <div class="col-12">
                 <i class="fa fa-clock"> {{ cat.list_date|timesince }} ago</i>
               </div>
             </div>

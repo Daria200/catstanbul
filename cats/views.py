@@ -1,6 +1,7 @@
 from multiprocessing import context
 from django.shortcuts import get_object_or_404, render
-from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.core.paginator import Paginator
+from .choices import age_choices, gender_choices, donation_choices
 
 from .models import Cat
 
@@ -22,4 +23,9 @@ def cat(request, cat_id):
 
 
 def search(request):
-    return render(request, "cats/search.html")
+    context = {
+        "age_choices": age_choices,
+        "gender_choices": gender_choices,
+        "donation_choices": donation_choices,
+    }
+    return render(request, "cats/search.html", context)
