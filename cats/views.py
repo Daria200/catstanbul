@@ -1,3 +1,4 @@
+from ast import keyword
 from multiprocessing import context
 from django.shortcuts import get_object_or_404, render
 from django.core.paginator import Paginator
@@ -23,9 +24,43 @@ def cat(request, cat_id):
 
 
 def search(request):
+    queryset_list = Cat.objects.order_by('-list_date')
+
+    # Keywords
+    if 'keywords' in request.GET:
+        keywords = request.GET['keywords']
+        if keywords:
+            queryset_list = queryset_list.filter(description__icontains = keywords)
+    
+    # City
+    if 'city' in request.GET:
+        city = request.GET['city']
+        if city:
+            queryset_list = queryset_list.filter(city__iexact = city)
+    
+    # Gender
+    if 'gender' in request.GET:
+        gender = request.GET['gender']
+        if gender:
+            queryset_list = queryset_list.filter(gender__iexact = gender)
+    
+    # Age
+    if 'age' in request.GET:
+        age = request.GET['age']
+        if age:
+            queryset_list = queryset_list.filter(age__iexact = age)
+    
+    # Donation
+    if 'donation' in request.GET:
+        donation = request.GET['donation']
+        if donation:
+            queryset_list = queryset_list.filter(donation__iexact = donation)
+
+
     context = {
         "age_choices": age_choices,
         "gender_choices": gender_choices,
         "donation_choices": donation_choices,
+        'cats':queryset_list
     }
     return render(request, "cats/search.html", context)
