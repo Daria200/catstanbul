@@ -34,8 +34,9 @@
                 <label class="sr-only">Gender</label>
                 <select name="gender" class="form-control">
                   <option selected="true" disabled="disabled">Gender</option>
-                  <option value="AL">Female</option>
-                  <option value="AK">Male</option>
+                  {% for key, value in gender_choices.items %}
+                    <option value="{{ key }}">{{ value }}</option>
+                  {% endfor %}
                 </select>
               </div>
             </div>
@@ -47,11 +48,9 @@
                   <option selected="true" disabled="disabled">
                     Age (years)
                   </option>
-                  <option value="1">1-</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4+</option>
+                  {% for key, value in age_choices.items %}
+                    <option value="{{ key }}">{{ value }}</option>
+                  {% endfor %}
                 </select>
               </div>
               <div class="col-md-6 mb-3">
@@ -59,11 +58,9 @@
                   <option selected="true" disabled="disabled">
                     Donation amount
                   </option>
-                  <option value="100000">$10</option>
-                  <option value="100000">$10</option>
-                  <option value="200000">$20</option>
-                  <option value="200000">$30</option>
-                  <option value="200000">$30+</option>
+                  {% for key, value in donation_choices.items %}
+                    <option value="{{ key }}">{{ value }}</option>
+                  {% endfor %}
                 </select>
               </div>
             </div>
@@ -82,9 +79,8 @@
   <div class="container">
     <h3 class="text-center mb-3">Our Cats</h3>
     <div class="row">
-      {% if cats %} 
-      {% for cat in cats %}
-        <div class="col-md-6 col-lg-4 mb-4">
+      {% if cats %} {% for cat in cats %}
+      <div class="col-md-6 col-lg-4 mb-4">
         <div class="card listing-preview">
           <img class="card-img-top" src="{{ cat.photo_main.url }}" alt="" />
           <div class="card-img-overlay">
@@ -98,8 +94,8 @@
             <div class="listing-heading text-center">
               <h4 class="text-primary">{{ cat.name }}</h4>
               <p>
-                <i class="fa fa-map-marker"></i> {{ cat.city }},
-                {{ cat.address }}
+                <i class="fa fa-map-marker"></i> {{ cat.city }}, {{ cat.address
+                }}
               </p>
             </div>
             <hr />
@@ -111,14 +107,15 @@
               <div class="col-6">
                 <i class="fa fa-paw"></i> Gender: {{ cat.gender }}
               </div>
-              
             </div>
             <div class="row py-2 text-secondary">
               <div class="col-6">
-                <i class="fa fa-hospital-o"></i> Vaccinated: {% if cat.vaccinated == True %} Yes {% else %} No {% endif %}
+                <i class="fa fa-hospital-o"></i> Vaccinated: 
+                {% if cat.vaccinated == True %} Yes {% else %} No {% endif %}
               </div>
               <div class="col-6">
-                <i class="fa fa-calendar"></i> Available: from {{ cat.available_from|date:'j.n.Y' }} 
+                <i class="fa fa-calendar"></i> Available: from {{
+                cat.available_from|date:'j.n.Y' }}
               </div>
             </div>
             <hr />
@@ -128,7 +125,9 @@
               </div>
             </div>
             <div class="row text-secondary pb-2">
-              <div class="col-6"><i class="fa fa-clock"> {{ cat.list_date|timesince }} ago</i></div>
+              <div class="col-6">
+                <i class="fa fa-clock"> {{ cat.list_date|timesince }} ago</i>
+              </div>
             </div>
             <hr />
             <a href="{% url 'cat' cat.id %}" class="btn btn-primary btn-block"
@@ -137,8 +136,7 @@
           </div>
         </div>
       </div>
-      {% endfor %} 
-      {% else %}
+      {% endfor %} {% else %}
       <div class="col-md-12"><p>{No Cats Available}</p></div>
       {% endif %}
     </div>
@@ -152,7 +150,7 @@
         <i class="fa fa-paw fa-4x"></i>
         <hr />
         <h3>Foster a Cat</h3>
-        <p >
+        <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt,
           debitis nam! Repudiandae, provident iste consequatur hic dignissimos
           ratione ea quae.
@@ -162,7 +160,7 @@
         <i class="fa fa-home fa-4x mr-4"></i>
         <hr />
         <h3>Donate Money for Our Cats</h3>
-        <p >
+        <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt,
           debitis nam! Repudiandae, provident iste consequatur hic dignissimos
           ratione ea quae.
@@ -172,7 +170,7 @@
         <i class="fa fa-globe fa-4x"></i>
         <hr />
         <h3>Come to Visit Cats</h3>
-        <p >
+        <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt,
           debitis nam! Repudiandae, provident iste consequatur hic dignissimos
           ratione ea quae.
