@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "debug_toolbar",
     "cats",
     "volunteers",
+    'accounts',
 ]
 
 
